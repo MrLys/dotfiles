@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/lys/.vim/plugged/NewProggie-Color-Scheme/vim-airline-themes'
+let g:netrw_dirhist_2='/Users/lys/.vim/plugged/NewProggie-Color-Scheme'
+let g:netrw_dirhist_3='/Users/lys/.vim/plugged/NewProggie-Color-Scheme/vim-airline-themes'
+let g:netrw_dirhist_4='/Library'
+let g:netrw_dirhist_5='/Library/Python'
+let g:netrw_dirhist_6='/Library/Python/2.7'
+let g:netrw_dirhist_7='/Library/Python/2.7/site-packages'
