@@ -1,12 +1,17 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/Projects/scripts/
 # Path to your oh-my-zsh installation.
+export ZSH=/Users/lys/.oh-my-zsh
 
+
+export LOGICS_DATABASE_USER="lys"
+export LOGICS_DATABASE_PASSWORD=""
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+DEFAULT_USER="lys"
 ZSH_THEME="robbyrussell"
 
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 # fzf via Homebrew
 #if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
 #  source /usr/local/opt/fzf/shell/key-bindings.zsh
@@ -114,7 +119,9 @@ source $ZSH/oh-my-zsh.sh
   then
     /usr/bin/env ZSH=$ZSH zsh $ZSH/tools/check_for_upgrade.sh
   fi
+export DOC=''
+export MORD_HOME=$HOME/Projects/mord
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/.rvm/bin:$HOME/anaconda2/bin
 eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
