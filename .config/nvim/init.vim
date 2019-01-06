@@ -1,11 +1,34 @@
 syntax on
 set encoding=utf-8
 ""set spell
-set number " show line numbers in Vim vim 
+set number " show line numbers in Vim Vim
 set relativenumber " show relative line numbers
+set tw=79
 let mapleader = "\<Space>"
+let vim_markdown_preview_github=1
 nnoremap <leader>f z=
 nnoremap <leader>s :set spell!<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" Go back and fix last misspelled word.
+inoremap <C-L> <C-G>u<Esc>[s1z=`]a<C-G>u
+" Select last misspelled word.
+inoremap <C-K> <Esc>[s<C-G>
+" ----- TAB NAVIGATION -----
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+" Alternatively use
+"nnoremap th :tabnext<CR>
+"nnoremap tl :tabprev<CR>
+"nnoremap tn :tabnew<CR>
 
 augroup numbertoggle
   autocmd!
@@ -13,55 +36,45 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+
+" automatically remove trailing whitespace before write
+function! StripTrailingWhitespace()
+  normal mZ
+  %s/\s\+$//e
+  if line("'Z") != line(".")
+    echo "Stripped whitespace\n"
+  endif
+  normal `Z
+endfunction
+autocmd BufWritePre *.{cpp,hpp,i,py,java,c,md,yml,vim} :call StripTrailingWhitespace()
+
+
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set wrap linebreak nolist
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " Fuzzy finder.
+Plug 'vimwiki/vimwiki'
+Plug 'leafgarland/typescript-vim' " Typescript syntax.
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.6' } 
-Plug 'nightsense/vrunchbang'
-Plug 'nightsense/nemo'
-Plug 'Zabanaa/neuromancer.vim'
-Plug 'beigebrucewayne/hacked_ayu.vim'
-Plug 'beigebrucewayne/Turtles'
+Plug 'beigebrucewayne/Turtles' " color scheme
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'rakr/vim-one'
-Plug 'dim13/smyck.vim'
-Plug 'NewProggie/NewProggie-Color-Scheme'
+Plug 'rakr/vim-one' " Color scheme
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary' " Comment out things.
+Plug 'tpope/vim-fugitive'   " git Gstatus, GEdit, Gdiff.
+Plug 'tpope/vim-airline'
+Plug 'tpope/vim-fireplace'  " clojure nREPL
+Plug 'clojure-emacs/cider-nrepl' " for clojure nREPL
+Plug 'guns/vim-clojure-static'
 call plug#end()
 highlight ColorColumn ctermbg=magenta
-"colorscheme jellybeans
-"
-"colorscheme vrunchbang-dark
-"
-"let g:vrunchbang_dark_CursorLineNr = 'off'
-"let g:vrunchbang_dark_LineNr = 'off'
-
-" Nemo-dark
-"colorscheme nemo-dark
-"let g:nemo_dark_CursorLineNr = 'off'
-"let g:nemo_dark_LineNr = 'off'
-
-" Hacked Ayu
-"colorscheme hacked_ayu
-
-"  Neuromancer
-"colorscheme neuromancer
-
-"colorscheme one
-"set background=dark " for the dark version
-" set background=light " for the light version
-
-"colorscheme test2
-"colorscheme sahara_modified
-"colorscheme untanned_anna_final
-"colorscheme newproggie
 colorscheme turtles
-"" set in vimrc/init.vim
+
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -82,6 +95,7 @@ let g:rbpt_colorpairs = [
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
+
 augroup RainbowParens
  au!
  au VimEnter * RainbowParenthesesToggle
@@ -89,6 +103,7 @@ augroup RainbowParens
  au Syntax * RainbowParenthesesLoadSquare
  au Syntax * RainbowParenthesesLoadBraces
 augroup END
+
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
