@@ -5,6 +5,7 @@ set number " show line numbers in Vim Vim
 set relativenumber " show relative line numbers
 set tw=79
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 let vim_markdown_preview_github=1
 nnoremap <leader>f z=
 nnoremap <leader>s :set spell!<CR>
@@ -46,7 +47,7 @@ function! StripTrailingWhitespace()
   endif
   normal `Z
 endfunction
-autocmd BufWritePre *.{cpp,hpp,i,py,java,c,md,yml,vim} :call StripTrailingWhitespace()
+autocmd BufWritePre *.{cpp,hpp,i,py,java,c,md,yml,vim,tex} :call StripTrailingWhitespace()
 
 
 set expandtab
@@ -59,6 +60,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Fuzzy finder.
 Plug 'vimwiki/vimwiki'
+Plug 'lervag/vimtex'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
 Plug 'leafgarland/typescript-vim' " Typescript syntax.
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'beigebrucewayne/Turtles' " color scheme
@@ -104,8 +108,78 @@ augroup RainbowParens
  au Syntax * RainbowParenthesesLoadBraces
 augroup END
 
+
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+inoremap <c-c> <ESC>
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
+  augroup my_cm_setup
+    autocmd!
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    autocmd Filetype tex call ncm2#register_source({
+            \ 'name' : 'vimtex-cmds',
+            \ 'priority': 8,
+            \ 'complete_length': -1,
+            \ 'scope': ['tex'],
+            \ 'matcher': {'name': 'prefix', 'key': 'word'},
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+    autocmd Filetype tex call ncm2#register_source({
+            \ 'name' : 'vimtex-labels',
+            \ 'priority': 8,
+            \ 'complete_length': -1,
+            \ 'scope': ['tex'],
+            \ 'matcher': {'name': 'combine',
+            \             'matchers': [
+            \               {'name': 'substr', 'key': 'word'},
+            \               {'name': 'substr', 'key': 'menu'},
+            \             ]},
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm2#labels,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+    autocmd Filetype tex call ncm2#register_source({
+            \ 'name' : 'vimtex-files',
+            \ 'priority': 8,
+            \ 'complete_length': -1,
+            \ 'scope': ['tex'],
+            \ 'matcher': {'name': 'combine',
+            \             'matchers': [
+            \               {'name': 'abbrfuzzy', 'key': 'word'},
+            \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+            \             ]},
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm2#files,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+    autocmd Filetype tex call ncm2#register_source({
+            \ 'name' : 'bibtex',
+            \ 'priority': 8,
+            \ 'complete_length': -1,
+            \ 'scope': ['tex'],
+            \ 'matcher': {'name': 'combine',
+            \             'matchers': [
+            \               {'name': 'prefix', 'key': 'word'},
+            \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+            \               {'name': 'abbrfuzzy', 'key': 'menu'},
+            \             ]},
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+  augroup END
+
