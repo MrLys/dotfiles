@@ -77,10 +77,10 @@ Plug 'rakr/vim-one' " Color scheme
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary' " Comment out things.
 Plug 'tpope/vim-fugitive'   " git Gstatus, GEdit, Gdiff.
-Plug 'tpope/vim-airline'
-Plug 'tpope/vim-fireplace'  " clojure nREPL
-Plug 'clojure-emacs/cider-nrepl' " for clojure nREPL
-Plug 'guns/vim-clojure-static'
+Plug 'vim-airline/vim-airline'
+"Plug 'tpope/vim-fireplace'  " clojure nREPL
+"Plug 'clojure-emacs/cider-nrepl' " for clojure nREPL
+"Plug 'guns/vim-clojure-static'
 call plug#end()
 highlight ColorColumn ctermbg=magenta
 colorscheme turtles
