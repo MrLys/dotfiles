@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
     -- use('hrsh7th/cmp-nvim-lsp')
     -- You can specify rocks in isolation
     use_rocks 'penlight'
+    use_rocks 'lpeg'
+    use_rocks 'http'
+    use_rocks 'lua-cjson'
 
     -- Post-install/update hook with neovim command
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -48,6 +51,7 @@ return require('packer').startup(function(use)
 	-- or                            , branch = '0.1.x',
 	requires = { {'nvim-lua/plenary.nvim'} }
     }
+    use { "nvim-telescope/telescope-file-browser.nvim" }
     use {
 	'theprimeagen/harpoon',
 	requires = { {'nvim-lua/plenary.nvim'} }
