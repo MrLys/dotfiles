@@ -23,11 +23,14 @@ return require("packer").startup(function(use)
     use("mbbill/undotree")
 
     use("theprimeagen/harpoon")
+    use("kylechui/nvim-surround")
 
     use("nvim-lua/plenary.nvim")
     use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
     -- git
     use("tpope/vim-fugitive")
+    -- character/unicode
+    use("tpope/vim-characterize")
     use({
         "nvim-telescope/telescope.nvim", tag = "0.1.0",
         -- or                            , branch = "0.1.x",
@@ -41,6 +44,7 @@ return require("packer").startup(function(use)
             vim.cmd('colorscheme rose-pine')
         end
     })
+    use("andrewferrier/debugprint.nvim")
 
     use({ "catppuccin/nvim", as = "catppuccin" })
     -- lsp
