@@ -27,10 +27,9 @@ return require("packer").startup(function(use)
 
     use("nvim-lua/plenary.nvim")
     use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
-    -- git
+   -- git
     use("tpope/vim-fugitive")
-    -- character/unicode
-    use("tpope/vim-characterize")
+
     use({
         "nvim-telescope/telescope.nvim", tag = "0.1.0",
         -- or                            , branch = "0.1.x",
