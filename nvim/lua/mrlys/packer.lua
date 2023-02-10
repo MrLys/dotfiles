@@ -22,6 +22,18 @@ return require("packer").startup(function(use)
 
     use("mbbill/undotree")
 
+    use({"jackmort/chatgpt.nvim",
+        requires = {
+            "muniftanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
+
+    use({"debugloop/telescope-undo.nvim",
+        requires = { "nvim-telescope/telescope.nvim" }
+    })
+
     use("theprimeagen/harpoon")
     use("kylechui/nvim-surround")
 
