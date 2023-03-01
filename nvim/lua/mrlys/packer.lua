@@ -80,6 +80,7 @@ return require("packer").startup(function(use)
             {'rafamadriz/friendly-snippets'},
         }
     }
+    use({"erichdongubler/lsp_lines.nvim"})
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
