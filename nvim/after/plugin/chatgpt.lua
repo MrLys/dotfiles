@@ -1,1 +1,1 @@
-require("chatgpt").setup({})
+require("lazy").setup("chatgpt", {})

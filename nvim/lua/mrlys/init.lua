@@ -1,5 +1,5 @@
 require("mrlys.set")
-require("mrlys.packer")
+--require("mrlys.lazy")
 require("mrlys.remap")
 
 local augroup = vim.api.nvim_create_augroup

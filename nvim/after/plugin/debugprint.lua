@@ -1,1 +1,1 @@
-require("debugprint").setup()
+require("lazy").setup("debugprint", {})

@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("lazy").setup("nvim-treesitter.configs", {
     -- A list of parser names, or "all"
     ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "go", "go" },
 

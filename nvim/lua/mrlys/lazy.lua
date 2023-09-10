@@ -14,12 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 -- Example using a list of specs with the default options
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
-require('lazy').setup({
+ require("lazy").startup({
+     -- Packer can manage itself
+     'wbthomason/packer.nvim',
 
      'mbbill/undotree',
 
      {"jackmort/chatgpt.nvim",
-         dependencies = {
+         requires = {
              "muniftanjim/nui.nvim",
              "nvim-lua/plenary.nvim",
              "nvim-telescope/telescope.nvim"
@@ -27,33 +29,37 @@ require('lazy').setup({
      },
 
      {"debugloop/telescope-undo.nvim",
-         dependencies = { "nvim-telescope/telescope.nvim" }
+         requires = { "nvim-telescope/telescope.nvim" }
      },
 
      'theprimeagen/harpoon',
      'kylechui/nvim-surround',
 
      'nvim-lua/plenary.nvim',
-     "nvim-treesitter/nvim-treesitter",
+     {"nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"}},
     -- git
      'tpope/vim-fugitive',
 
      {
          "nvim-telescope/telescope.nvim", tag = "0.1.0",
-         dependencies = { {"nvim-lua/plenary.nvim"} }
+         -- or                            , branch = "0.1.x",
+         requires = { {"nvim-lua/plenary.nvim"} }
      },
 
      {
          'rose-pine/neovim',
-         name = 'rose-pine'
+         as = 'rose-pine',
+         config = function()
+             vim.cmd('colorscheme rose-pine')
+         end
      },
      'andrewferrier/debugprint.nvim',
 
-     { "catppuccin/nvim", name = "catppuccin" },
+     { "catppuccin/nvim", as = "catppuccin" },
      -- lsp
      {
          'VonHeikemen/lsp-zero.nvim',
-         dependencies = {
+         requires = {
              -- LSP Support
              {'neovim/nvim-lspconfig'},
              {'williamboman/mason.nvim'},
