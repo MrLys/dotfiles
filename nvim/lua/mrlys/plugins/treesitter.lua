@@ -22,6 +22,7 @@ return {
 	},
 	---@type TSConfig
 	opts = {
+        ignore_install ={ 'help' },
 		highlight = { enable = true },
 		indent = { enable = true },
 		ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "go", "go" },
