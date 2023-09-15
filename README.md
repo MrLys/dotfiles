@@ -23,3 +23,6 @@ sudo reboot # optional
 ```bash
 sudo apt install python-is-python3
 ```
+
+
+
