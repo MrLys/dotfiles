@@ -7,6 +7,5 @@ return {
 	-- git
 
 	-- lsp
-	"erichdongubler/lsp_lines.nvim",
-	'plugins',
+	"erichdongubler/lsp_lines.nvim"
 }
