@@ -1,0 +1,11 @@
+
+session_name: projects
+root: ~/projects
+
+windows:
+  - window_name: editor
+  - window_name: shell
+  - window_name: server 
+  - window_name: gptt
+
+
