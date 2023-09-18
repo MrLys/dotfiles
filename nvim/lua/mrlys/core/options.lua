@@ -25,3 +25,16 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 vim.api.nvim_set_option("clipboard","unnamedplus")
+
+vim.g.clipboard = {
+    name = 'CopyQ',
+    copy = {
+        ['+'] = {'copyq', 'copyadd', '-'},
+        ['*'] = {'copyq', 'copyadd', '-'}
+    },
+    paste = {
+        ['+'] = {'copyq', 'paste', '-'},
+        ['*'] = {'copyq', 'paste', '-'}
+    },
+    cache_enabled = true
+}
