@@ -22,6 +22,8 @@ map \r <Action>(ReformatCode)
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(Run)
 map <leader>vws <Action>(FileStructurePopup)
+map <leader>vrn <Action>(RenameElement)
+map <leader>m <Action>(XDebugger.MuteBreakpoints
 
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
