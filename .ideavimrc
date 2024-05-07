@@ -5,6 +5,8 @@
 " Show a few lines of context around the cursor. Note that this makes the
 " text scroll if you mouse-click near the start or end of the window.
 let mapleader = "\<Space>"
+set relativenumber
+set number
 set scrolloff=5
 " Do incremental searching.
 set incsearch
@@ -22,8 +24,20 @@ map \r <Action>(ReformatCode)
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(Run)
 map <leader>vws <Action>(FileStructurePopup)
-map <leader>vrn <Action>(RenameElement)
-map <leader>m <Action>(XDebugger.MuteBreakpoints)
+map <leader>cr <Action>(RenameElement)
+map <leader>b <Action>(CompileDirty)
+map <leader>k <Action>(Stop)
+map <leader><Space> <Action>(GotoFile)
+map <leader>/ <Action>(FindInPath)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>gr <Action>(FindUsages)
+map <leader>sk <Action>(GotoAction)
+map ]d <Action>(GotoNextError)
+map [d <Action>(GotoPreviousError)
+map gD <Action>(GotoImplementation)
+map gd <Action>(GotoDeclaration)
+
+" map ? <Action>(IntroduceVariable)"
 
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
@@ -32,5 +46,4 @@ map <leader>m <Action>(XDebugger.MuteBreakpoints)
 " Find more examples here: https://jb.gg/share-ideavimrc
 set clipboard+=unnamedplus,unnamed,ideaput " integrate with system clipboard
 
-let g:clipboard = { 'name': 'CopyQ', 'copy': { '+': ['copyq', 'copyadd', '-'], '*': ['copyq', 'copyadd', '-'], },'paste': {'+': ['copyq', 'paste', '-'],'*': ['copyq', 'paste', '-'],},'cache_enabled': 1,}
 
