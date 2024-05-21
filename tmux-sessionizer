@@ -6,7 +6,7 @@ else
 	selected=$({
 		find ~/ -mindepth 1 -maxdepth 1 -type d
 		echo ""
-		find ~/projects -mindepth 1 -maxdepth 2 -type d
+		find ~/projects ~/project -mindepth 1 -maxdepth 2 -type d
 	} | grep -v '^$' | fzf)
 fi
 
