@@ -24,6 +24,7 @@ map \r <Action>(ReformatCode)
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(Run)
 map <leader>vws <Action>(FileStructurePopup)
+map <leader>cs <Action>(FileStructurePopup)
 map <leader>cr <Action>(RenameElement)
 map <leader>b <Action>(CompileDirty)
 map <leader>k <Action>(Stop)
@@ -36,6 +37,7 @@ map ]d <Action>(GotoNextError)
 map [d <Action>(GotoPreviousError)
 map gD <Action>(GotoImplementation)
 map gd <Action>(GotoDeclaration)
+map gcc <Action>(CommentByLineComment)
 
 " map ? <Action>(IntroduceVariable)"
 
